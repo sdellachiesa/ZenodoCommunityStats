@@ -38,9 +38,9 @@ library(gridExtra)
 #Leibniz IOER Community data
 record_list<- list_records("https://zenodo.org/oai2d",metadataPrefix="oai_datacite",set="user-ioer_dresden")
 #LTER-Italy Community data
-record_list<- list_records("https://zenodo.org/oai2d",metadataPrefix="oai_datacite",set="user-lter-italy")
+#record_list<- list_records("https://zenodo.org/oai2d",metadataPrefix="oai_datacite",set="user-lter-italy")
 #nfdi Community
-record_list<- list_records("https://zenodo.org/oai2d",metadataPrefix="oai_datacite",set="user-nfdi4earth")
+#record_list<- list_records("https://zenodo.org/oai2d",metadataPrefix="oai_datacite",set="user-konsortswd")
 #nfdi Community
 
 #extract specific fields form the record_list
@@ -49,8 +49,6 @@ df <- record_list %>% select(identifier.3,title,creator, datestamp)%>% rename(ur
 #Remove duplicated records based on df$title
 df_unique <- df[!duplicated(df$title), ]
 
-# Extract URLs from df_unique and convert to a vector
-#urls <- df_unique$url[1]
 
 # Extract URLs from df_unique and convert to a vector
 urls <- df_unique$url
@@ -93,11 +91,9 @@ summary(data$Downloads)
 TotalViews<-sum(data$Views)
 TotalDownloads<-sum(data$Downloads)
 
-
 # Calculate means for Views and Downloads
 mean_views <- mean(data$Views)
 mean_downloads <- mean(data$Downloads)
-
 
 
 # Create a data frame with the values for the boxplot
@@ -138,8 +134,6 @@ p_bp_gg_flipped <- ggplot(data_df, aes(x = Value, y = Type)) +  # Flip x and y a
   theme(axis.text.y = element_text(size = 11))  # Adjust the font size and style for y-axis
 
 p_bp_gg_flipped
-
-
 
 
 #Create a Scatterplot:
@@ -210,7 +204,7 @@ p_downloads <- ggplot(data, aes(x = Downloads)) +
 p_downloads
 
 #### CUMULATIV EPLOT
-# Set the locale to English (to set dates in the cumsum plot to english)
+# Set the locale to English (to set dates in the cumsum plot to English)
 Sys.setlocale("LC_TIME", "en_UK.UTF-8")
 
 df_recordXdate <- df_unique %>% select(url, title, creator, datestamp) %>%
@@ -223,7 +217,7 @@ df_recordXdate <- df_recordXdate %>%
   arrange(month) %>%
   mutate(cumulative_count = cumsum(count))
 
-
+# Cumulative plot
 p_cumsum <- ggplot(df_recordXdate, aes(x = as.Date(paste0(month, "-01")), y = cumulative_count,color = cumulative_count)) +
   geom_line("linewidth" = 3) +
   #geom_smooth(color ="red",se = FALSE,linetype = "dashed") +
