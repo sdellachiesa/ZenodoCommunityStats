@@ -38,7 +38,7 @@ library(gridExtra)
 #Leibniz IOER Community data
 record_list<- list_records("https://zenodo.org/oai2d",metadataPrefix="oai_datacite",set="user-ioer_dresden")
 #LTER-Italy Community data
-#record_list<- list_records("https://zenodo.org/oai2d",metadataPrefix="oai_datacite",set="user-lter-italy")
+record_list<- list_records("https://zenodo.org/oai2d",metadataPrefix="oai_datacite",set="user-lter-italy")
 #nfdi Community
 #record_list<- list_records("https://zenodo.org/oai2d",metadataPrefix="oai_datacite",set="user-konsortswd")
 #nfdi Community
@@ -144,7 +144,7 @@ p_scatter <- ggplot(data, aes(x = Views, y = Downloads)) +
   xlim(0, max(data$Views)) +
   ylim(0, max(data$Downloads)) +
   theme_minimal()+
-  annotate("text", x = 50, y = 700,
+  annotate("text", x = min(Views), y = max(Downloads),
            label = paste("Total Views:", TotalViews, "\nTotal Downloads:", TotalDownloads),
            color = "black", hjust = 0, vjust = 1,size = 3.5, fontface = "bold")
 p_scatter
@@ -174,7 +174,6 @@ p_h_views <- ggplot(data, aes(x = Views)) +
   theme_minimal()
 
 p_h_views
-
 
 # Create  histogram plot for Downloads
 Downloads<-data$Downloads
