@@ -2,8 +2,8 @@
 I was interested in getting some general community-level metrics (Views and Downloads)
 Unfortunately, Zenodo lacks an integrated dashboard for community-level usage statistics; the API queries do not gather these statistics. 
 
-This is an embarrassing, complicated approach to scraping values from a list of records of a specific Zenodo Community. 
-It provides a rough statistic about Views and Downloads.
+I know this is an embarrassing, complicated approach to get Zenodo Community-level Statistics by scraping values from a list of records of a specific Zenodo Community. 
+
 
 
 # Description
