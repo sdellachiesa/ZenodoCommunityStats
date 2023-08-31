@@ -38,7 +38,7 @@ library(gridExtra)
 #Leibniz IOER Community data
 record_list<- list_records("https://zenodo.org/oai2d",metadataPrefix="oai_datacite",set="user-ioer_dresden")
 #LTER-Italy Community data
-record_list<- list_records("https://zenodo.org/oai2d",metadataPrefix="oai_datacite",set="user-lter-italy")
+#record_list<- list_records("https://zenodo.org/oai2d",metadataPrefix="oai_datacite",set="user-lter-italy")
 #nfdi Community
 #record_list<- list_records("https://zenodo.org/oai2d",metadataPrefix="oai_datacite",set="user-konsortswd")
 #nfdi Community
