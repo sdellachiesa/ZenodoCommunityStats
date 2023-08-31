@@ -175,6 +175,7 @@ p_h_views <- ggplot(data, aes(x = Views)) +
 
 p_h_views
 
+
 # Create  histogram plot for Downloads
 Downloads<-data$Downloads
 p_h_Downloads <- ggplot(data, aes(x = Downloads)) +
