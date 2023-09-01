@@ -1,7 +1,7 @@
 [![DOI](https://zenodo.org/badge/685491513.svg)](https://zenodo.org/badge/latestdoi/685491513)
 # Zenodo Community Statistics
-I was interested in getting some general community-level metrics (Views and Downloads)
-Unfortunately, Zenodo lacks an integrated dashboard for community-level usage statistics; the API queries do not gather these statistics. 
+I was interested in getting some general Zenodo community-level metrics (Views and Downloads)
+Unfortunately, Zenodo lacks an integrated dashboard for community-level usage statistics; the API queries do not gather these statistics (or I couldn´t figure it out). 
 
 I know this is an embarrassing, complicated approach to get Zenodo Community-level Statistics by scraping values from a list of records of a specific Zenodo Community. 
 
