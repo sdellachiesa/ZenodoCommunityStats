@@ -1,3 +1,4 @@
+[![DOI](https://zenodo.org/badge/685491513.svg)](https://zenodo.org/badge/latestdoi/685491513)
 # Zenodo Community Statistics
 I was interested in getting some general community-level metrics (Views and Downloads)
 Unfortunately, Zenodo lacks an integrated dashboard for community-level usage statistics; the API queries do not gather these statistics. 
