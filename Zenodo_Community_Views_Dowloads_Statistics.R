@@ -89,11 +89,15 @@ data <- na.omit(data)
 summary(data$Views)
 summary(data$Downloads)
 TotalViews<-sum(data$Views)
+TotalViews
 TotalDownloads<-sum(data$Downloads)
+TotalDownloads
 
 # Calculate means for Views and Downloads
 mean_views <- mean(data$Views)
+mean_views
 mean_downloads <- mean(data$Downloads)
+mean_downloads
 
 
 # Create a data frame with the values for the boxplot
@@ -144,7 +148,7 @@ p_scatter <- ggplot(data, aes(x = Views, y = Downloads)) +
   xlim(0, max(data$Views)) +
   ylim(0, max(data$Downloads)) +
   theme_minimal()+
-  annotate("text", x = min(Views), y = max(Downloads),
+  annotate("text", x = min(data$Views), y = max(data$Downloads),
            label = paste("Total Views:", TotalViews, "\nTotal Downloads:", TotalDownloads),
            color = "black", hjust = 0, vjust = 1,size = 3.5, fontface = "bold")
 p_scatter
