@@ -17,6 +17,7 @@
 # 4) It loops through a list of URLs and Scrape the Views and Downloads data from each Zenodo record (URL)
 #it might take some time depending on the size of your Community because a time delay of 0.5 sec is introduced
 #to  prevent the HTTP Error 429: "Too Many Requests". itmight not work for large communities.
+#more info on Rate limites are here: https://developers.zenodo.org/?python#how-to-verify-your-quot-zenodo-json-quot-file
 # 5) Data summary and plots
 
 if (!require(oai)) install.packages('oai') 
@@ -40,14 +41,16 @@ record_list<- list_records("https://zenodo.org/oai2d",metadataPrefix="oai_dataci
 #LTER-Italy Community data
 #record_list<- list_records("https://zenodo.org/oai2d",metadataPrefix="oai_datacite",set="user-lter-italy")
 #nfdi Community
-#record_list<- list_records("https://zenodo.org/oai2d",metadataPrefix="oai_datacite",set="user-konsortswd")
+#record_list<- list_records("https://zenodo.org/oai2d",metadataPrefix="oai_datacite",set="user-dfns")
 #nfdi Community
 
 #extract specific fields form the record_list
-df <- record_list %>% select(identifier.3,title,creator, datestamp)%>% rename(url = identifier.3)  
+df <- record_list %>% select(identifier.2,title,creator, datestamp)%>% rename(url = identifier.2)  
 
-#Remove duplicated records based on df$title
+#Remove duplicated records based on df$title (removing versions to remove statistic double count)
 df_unique <- df[!duplicated(df$title), ]
+#Remove specific URLs that is mistakenly replicated (previous df$title filter was not sufficient) 
+df_unique <- df_unique %>% filter(url != "https://doi.org/10.5281/zenodo.7774749")
 
 
 # Extract URLs from df_unique and convert to a vector
@@ -59,22 +62,38 @@ data <- data.frame(URL = character(0), Views = numeric(0), Downloads = numeric(0
 # WEB DATA SCRAPING ----
 # Function to scrape data from a single URL
 # Loop through the URLs ---- scrape the data, and append it to the dataframe
+
 for (i in seq_along(urls)) {
   url <- urls[i]
+
   print(paste("Processing URL", i, "of", length(urls)))
   
   # Read the HTML content of the URL
   page <- read_html(url)
   
-  # Scrape the numeric values from the specific structure
-  stats_data <- page %>%
-    html_nodes(".stats-box .stats-data") %>%
+  # OLD Zenodo GUI before September 2023
+  # # Scrape the numeric values from the specific structure
+  # stats_data <- page %>%
+  #   html_nodes(".stats-box .stats-data") %>%
+  #   html_text() %>%
+  #   as.numeric()
+  # 
+  # # Extract the values based on their positions in the scraped data
+  # view_value <- stats_data[1]
+  # download_value <- stats_data[2]
+  
+  # NEW Zendo GUI september 2023
+  # Scrape the numeric values for VIEWS and DOWNLOADS
+  view_value <- page %>%
+    html_nodes("div.ui.statistic:contains('Views') .value") %>%
     html_text() %>%
     as.numeric()
   
-  # Extract the values based on their positions in the scraped data
-  view_value <- stats_data[1]
-  download_value <- stats_data[2]
+  download_value <- page %>%
+    html_nodes("div.ui.statistic:contains('Downloads') .value") %>%
+    html_text() %>%
+    as.numeric()
+  
   
   # Append the scraped data to the dataframe
   data <- data %>%

@@ -24,6 +24,7 @@ The statistics cannot be 100% trusted as sometimes data contains NaNs, or not al
 6) It loops through a list of URLs. Scrape the View and Download data from each Zenodo record (URL).
 It might take some time, depending on the size of your Community, because a time delay of 0.5 seconds is introduced
 to  prevent the **HTTP Error 429**: "Too Many Requests". It might not work for large communities.
+More info on rate limits are here: https://developers.zenodo.org/?python#how-to-verify-your-quot-zenodo-json-quot-file
 7) It executes some data summary and plots
    
 ![image](https://github.com/sdellachiesa/ZenodoCommunityStats/assets/24674756/4d04fc9c-6e17-4969-b335-72f7e58759c8)
