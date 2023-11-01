@@ -29,4 +29,6 @@ to  prevent the **HTTP Error 429**: "Too Many Requests". It might not work for l
 More info on rate limits are here: https://developers.zenodo.org/?python#how-to-verify-your-quot-zenodo-json-quot-file
 7) It executes some data summary and plots
    
-![image](https://github.com/sdellachiesa/ZenodoCommunityStats/blob/main/ZenodoStatistics.png)
+![ZenodoStats](https://github.com/sdellachiesa/ZenodoCommunityStats/blob/main/ZenodoStatistics.png)
+![Alt text](https://assets.digitalocean.com/articles/alligator/boo.svg "a title")
+
