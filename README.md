@@ -30,5 +30,4 @@ More info on rate limits are here: https://developers.zenodo.org/?python#how-to-
 7) It executes some data summary and plots
    
 ![ZenodoStats](https://github.com/sdellachiesa/ZenodoCommunityStats/blob/main/ZenodoStatistics.png)
-![Alt text](https://assets.digitalocean.com/articles/alligator/boo.svg "a title")
 
